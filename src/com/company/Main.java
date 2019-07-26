@@ -18,8 +18,10 @@ public class Main {
         Boolean key1 = true;
 
 //                                           FIRST PAGE
+        System.out.println("Hello dear User");
+
         while (key1) {
-            System.out.println("Hello\nWhat do you want to do?\n-1-adding to the system" +
+            System.out.println("What do you want to do?\n-1-adding to the system" +
                     "\n-2-searching through the system\n-3-exit the system");
             Scanner scanner = new Scanner(System.in);
             String First = scanner.nextLine();
@@ -32,19 +34,23 @@ public class Main {
                     switch (whichAdd) {
                         case "1":
                             Student.addToStudent();
+                            break;
                         case "2":
                             Docent.addToDocent();
+                            break;
                         case "3":
                             Employee.addToEmployee();
+                            break;
                         case "4":
                             Field.addToField();
+                            break;
                     }
                     break;
 
 //                                                 SECOND PAGE
                 case "2":
 //                    SearchPerson.searchInPerson(person.lastName);//TODO how doo you recommend that i try to search
-//                     for persons
+//                     1for persons
                     break;
 
 //                                                  SECOND PAGE
