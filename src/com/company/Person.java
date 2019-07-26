@@ -1,24 +1,23 @@
 package com.company;
 
 public class Person {
-    String firstName;
-    String lastName;
+    public String firstName;
+    public String lastName;
 
-//                           CONSTRUCTOR
-    public Person(String firstName,String lastName){
-        if (isNameValid(firstName)){
+    //                           CONSTRUCTOR
+    public Person(String firstName, String lastName) {
+        if (isNameValid(firstName)) {
             this.firstName = firstName;
         }
-        if (isNameValid(lastName)){
+        if (isNameValid(lastName)) {
             this.lastName = lastName;
         }
-
     }
 
-//                              CHECKING BLOCKS
+    //                              CHECKING BLOCKS
     private boolean isNumberValid(String number) {
         for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i)>='0' && number.charAt(i)<='9'){
+            if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
                 return true;
             }
         }
@@ -27,7 +26,7 @@ public class Person {
 
     private boolean isNameValid(String word) {
         for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i)>='a' && word.charAt(i)<='z'){
+            if (word.charAt(i) >= 'a' && word.charAt(i) <= 'z') {
                 return true;
             }
         }

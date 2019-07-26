@@ -28,27 +28,23 @@ public class Main {
 //                                             SECOND PAGE
                 case "1":
                     System.out.println("What do you want to add?\n-1-Student\n-2-Docent\n-3-Employee\n-4-Field");
-                    Strung whichAdd = scanner.nextLine();
-                    Person person = new Person();
+                    String whichAdd = scanner.nextLine();
                     switch (whichAdd) {
                         case "1":
-                            AddPerson.addToPerson();
-                            AddPerson.addToStudent():
+                            Student.addToStudent();
                         case "2":
-                            AddPerson.addToPerson();
-                            AddPerson.addToDocent();
+                            Docent.addToDocent();
                         case "3":
-                            AddPerson.addToPerson();
-                            AddPerson.addToEmployee();
+                            Employee.addToEmployee();
                         case "4":
-                            AddPerson.addToPerson();
-                            AddPerson.addToField();
+                            Field.addToField();
                     }
                     break;
 
 //                                                 SECOND PAGE
                 case "2":
-                    SearchPerson.searchInPerson(Person.lastName);
+//                    SearchPerson.searchInPerson(person.lastName);//TODO how doo you recommend that i try to search
+//                     for persons
                     break;
 
 //                                                  SECOND PAGE
