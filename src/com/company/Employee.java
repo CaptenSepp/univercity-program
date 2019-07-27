@@ -1,10 +1,16 @@
 package com.company;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Employee extends Person {
     private String employeeNumber;
     private String entranceYear;
+    private static ArrayList<Employee> employees = new ArrayList<>();
 
     public Employee(String firstName, String lastName, String employeeNumber, String entranceYear) {
         super(firstName, lastName);
@@ -44,6 +50,31 @@ public class Employee extends Person {
         String employeeNumber = scanner.nextLine();
         System.out.println("Enter Employee reputation");
         String entranceYear = scanner.nextLine();
+    }
+
+    public static void readEmployee(){
+        try {
+            File EmployeeFile = new File("resources/EmployeeFile.txt");
+
+            BufferedReader br = new BufferedReader(new FileReader(EmployeeFile));
+
+            String stop = "";
+            while ((stop = br.readLine()) != null) {
+                String firstName = br.readLine();
+                String lastName = br.readLine();
+                String employeeNumber = br.readLine();
+                String entranceYear = br.readLine();
+                Employee employee = new Employee(firstName, lastName, employeeNumber, entranceYear);
+                employees.add(employee);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Employee> getEmployees() {
+        return employees;
     }
 }
 

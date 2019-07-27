@@ -4,17 +4,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        // write your code here
-        //    public static void main(String[]args) throws IOException {
-//        File studentFile = new File("StudentFile.txt");
-//
-//        BufferedReader br = new BufferedReader(new FileReader(studentFile));
-//
-//        String st;
-//        while ((st = br.readLine()) != null)
-//            System.out.println(st);
-
+    public static void main(String[] args){
+        Student.readStudent();
+        Docent.readDocent();
+        Employee.readEmployee();
+        Field.readField();
+        System.out.println(Student.getStudents());
+        System.out.println(Docent.getDocents());
+        System.out.println(Employee.getEmployees());
+        System.out.println(Field.getFields());
         Boolean key1 = true;
 
 //                                           FIRST PAGE
