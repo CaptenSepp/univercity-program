@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -40,19 +37,7 @@ public class Employee extends Person {
         return false;
     }
 
-    public static void addToEmployee() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Employee First name");
-        String firsName = scanner.nextLine();
-        System.out.println("Enter Employee Last name");
-        String lastName = scanner.nextLine();
-        System.out.println("Enter Employee Number");
-        String employeeNumber = scanner.nextLine();
-        System.out.println("Enter Employee reputation");
-        String entranceYear = scanner.nextLine();
-    }
-
-    public static void readEmployee(){
+    public static void readEmployee() {
         try {
             File EmployeeFile = new File("resources/EmployeeFile.txt");
 
@@ -68,6 +53,41 @@ public class Employee extends Person {
                 employees.add(employee);
 
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addToEmployee() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Employee First name");
+        String firsName = scanner.nextLine();
+        System.out.println("Enter Employee Last name");
+        String lastName = scanner.nextLine();
+        System.out.println("Enter Employee Number");
+        String employeeNumber = scanner.nextLine();
+        System.out.println("Enter Employee reputation");
+        String entranceYear = scanner.nextLine();
+        Employee employee = new Employee(firsName, lastName, employeeNumber, entranceYear);
+        employees.add(employee);
+        writeEmployee(firsName, lastName, employeeNumber, entranceYear);
+    }
+
+
+    public static void writeEmployee(String firstName, String lastName, String employeeNumber, String entranceYear) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/EmployeeFile.txt", true));
+//            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
+//             because we call it from main, i don't know what should i do now
+            bw.append(firstName);
+            bw.newLine();
+            bw.append(lastName);
+            bw.newLine();
+            bw.append(employeeNumber);
+            bw.newLine();
+            bw.append(entranceYear);
+            bw.newLine();
+            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

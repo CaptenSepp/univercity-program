@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -43,22 +40,7 @@ public class Docent extends Person {
         return false;
     }
 
-    public static void addToDocent() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Docent First name");
-        String firstName = scanner.nextLine();
-        System.out.println("Enter the Docent Last name");
-        String lastName = scanner.nextLine();
-        System.out.println("Enter Docent number");
-        String docentNumber = scanner.nextLine();
-        System.out.println("Enter Docent field");
-        String docentField = scanner.nextLine();
-        Docent docent = new Docent(firstName, lastName, docentNumber, docentField);
-        docents.add(docent);
-
-    }
-
-    public static void readDocent(){
+    public static void readDocent() {
         try {
             File docentFile = new File("resources/DocentFile.txt");
 
@@ -74,6 +56,40 @@ public class Docent extends Person {
                 docents.add(docent);
 
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addToDocent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Docent First name");
+        String firstName = scanner.nextLine();
+        System.out.println("Enter the Docent Last name");
+        String lastName = scanner.nextLine();
+        System.out.println("Enter Docent number");
+        String docentNumber = scanner.nextLine();
+        System.out.println("Enter Docent field");
+        String docentField = scanner.nextLine();
+        Docent docent = new Docent(firstName, lastName, docentNumber, docentField);
+        docents.add(docent);
+        writeDocent(firstName, lastName, docentNumber, docentField);
+    }
+
+    public static void writeDocent(String firstName, String lastName, String docentNumber, String docentField) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/DocentFile.txt", true));
+//            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
+//             because we call it from main, i don't know what should i do now
+            bw.append(firstName);
+            bw.newLine();
+            bw.append(lastName);
+            bw.newLine();
+            bw.append(docentNumber);
+            bw.newLine();
+            bw.append(docentField);
+            bw.newLine();
+            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

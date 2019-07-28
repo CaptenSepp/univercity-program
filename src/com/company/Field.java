@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -45,19 +42,7 @@ public class Field {
         return false;
     }
 
-    public static void addToField() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the field name");
-        String fieldName = scanner.nextLine();
-        System.out.println("Enter the field number");
-        String fieldNumber = scanner.nextLine();
-        System.out.println("Enter the field point");
-        String fieldPoint = scanner.nextLine();
-        System.out.println("Enter the field date");
-        String fieldDate = scanner.nextLine();
-    }
-
-    public static void readField(){
+    public static void readField() {
 
         try {
             File fieldFile = new File("resources/FieldFile.txt");
@@ -73,6 +58,40 @@ public class Field {
                 Field field = new Field(fieldName, fieldNumber, fieldPoint, fieldDate);
                 fields.add(field);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addToField() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the field name");
+        String fieldName = scanner.nextLine();
+        System.out.println("Enter the field number");
+        String fieldNumber = scanner.nextLine();
+        System.out.println("Enter the field point");
+        String fieldPoint = scanner.nextLine();
+        System.out.println("Enter the field date");
+        String fieldDate = scanner.nextLine();
+        Field field = new Field(fieldName, fieldNumber, fieldPoint, fieldDate);
+        fields.add(field);
+        writeField(fieldName, fieldNumber, fieldPoint, fieldDate);
+    }
+
+    public static void writeField(String fieldName, String fieldNumber, String fieldPoint, String fieldDate) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/FieldFile.txt", true));
+//            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
+//             because we call it from main, i don't know what should i do now
+            bw.append(fieldName);
+            bw.newLine();
+            bw.append(fieldNumber);
+            bw.newLine();
+            bw.append(fieldPoint);
+            bw.newLine();
+            bw.append(fieldDate);
+            bw.newLine();
+            bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

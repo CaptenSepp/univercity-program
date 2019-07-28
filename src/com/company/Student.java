@@ -13,8 +13,6 @@ public class Student extends Person {
     private static ArrayList<Student> students = new ArrayList<>();
 
 
-
-
     public Student(String firstName, String lastName, String studentNumber, String studentField, String entranceYear,
                    String average) {
         super(firstName, lastName);
@@ -32,6 +30,7 @@ public class Student extends Person {
         }
         students.add(this);
     }
+
     private boolean isNumberValid(String number) {
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
@@ -40,6 +39,7 @@ public class Student extends Person {
         }
         return false;
     }
+
     private boolean isNameValid(String word) {
         for (int i = 0; i < word.length(); i++) {
             if (word.charAt(i) >= 'a' && word.charAt(i) <= 'z') {
@@ -49,34 +49,9 @@ public class Student extends Person {
         return false;
     }
 
-
-
-
-
-
-    public static void addToStudent() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the First name");
-        String firstName = scanner.nextLine();
-        System.out.println("Enter the Last name");
-        String lastName = scanner.nextLine();
-        System.out.println("Enter the Student number");
-        String studentNumber = scanner.nextLine();
-        System.out.println("Enter the Student filed");
-        String studentField = scanner.nextLine();
-        System.out.println("Enter the entrance year");
-        String entranceYear = scanner.nextLine();
-        System.out.println("Enter the Average");
-        String average = scanner.nextLine();
-        Student student = new Student(firstName, lastName, studentNumber, studentField, entranceYear, average);
-        students.add(student);
-        writeStudent(firstName,lastName,studentNumber,studentField,entranceYear,average);
-    }
-
-
-
-
-
+    /**
+     * this method read the context from text file
+     */
     public static void readStudent() {
         try {
             File studentFile = new File("resources/StudentFile.txt");
@@ -97,10 +72,35 @@ public class Student extends Person {
         }
     }
 
+    /**
+     * this method add the persons through user
+     */
+    public static void addToStudent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the First name");
+        String firstName = scanner.nextLine();
+        System.out.println("Enter the Last name");
+        String lastName = scanner.nextLine();
+        System.out.println("Enter the Student number");
+        String studentNumber = scanner.nextLine();
+        System.out.println("Enter the Student filed");
+        String studentField = scanner.nextLine();
+        System.out.println("Enter the entrance year");
+        String entranceYear = scanner.nextLine();
+        System.out.println("Enter the Average");
+        String average = scanner.nextLine();
+        Student student = new Student(firstName, lastName, studentNumber, studentField, entranceYear, average);
+        students.add(student);
+        writeStudent(firstName, lastName, studentNumber, studentField, entranceYear, average);
+    }
+
+    /**
+     * this method write the context from user to text file
+     */
     public static void writeStudent(String firstName, String lastName, String studentNumber, String studentField,
-                                    String entranceYear, String average){
+                                    String entranceYear, String average) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/StudentFile.txt",true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/StudentFile.txt", true));
 //            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
 //             because we call it from main, i dont know wwhat should i do now
             bw.append(firstName);
@@ -116,14 +116,10 @@ public class Student extends Person {
             bw.append(average);
             bw.newLine();
             bw.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 
     public static ArrayList<Student> getStudents() {
