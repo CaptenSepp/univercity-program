@@ -120,8 +120,29 @@ public class Student extends Person {
             e.printStackTrace();
         }
     }
+    /**here is given the lastname or student number to define the object and then provide the deleting option
+     * to erase the object from the list and text file
+     * >>>Naive Algorithm :
+     *
+     * 1. Create PrintWriter object for output.txt
+     * 2. Open BufferedReader for input.txt
+     * 3. Run a loop for each line of input.txt
+     *    3.1 flag = false
+     *    3.2 Open BufferedReader for delete.txt
+     *    3.3 Run a loop for each line of delete.txt
+     *       ->  If  line of delete.txt is equal to current line of input.txt
+     *             -> flag = true
+     *             -> break loop
+     *
+     * 4. Check flag, if false
+     *      -> write current line of input.txt to output.txt
+     * 5. Flush PrintWriter stream and close resources.*/
+//    TODO Question : by deleting i found some methods like flush from class print writer and hashset
+//     that i rather not use them as long as i don't know everything about them , do you have any other idea or
+//     should i attempt to learn them from oracle.com
+    public static void deleteFromStudent(){
 
-
+    }
     public static ArrayList<Student> getStudents() {
         return students;
     }
