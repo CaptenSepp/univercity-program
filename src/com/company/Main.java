@@ -47,16 +47,13 @@ public class Main {
                     break;
 
 //                                                 SECOND PAGE search
-                case "2":
-                    System.out.println("Enter the name as is entered in system\n");
-                    String searchedWord = scanner.nextLine();
 //                    TODO here ew should think of listing the object how that we be able to search in them or
 //                     thinking of another way to search
-                    if (Student.getStudents().contains(searchedWord)) {
-                        System.out.println(Student.getStudents().get(Student.getStudents().indexOf(searchedWord)) + "\n");
-                    } else {
-                        System.out.println("The entered name is not in system\n");
-                    }
+/**             this part will lead to the method thar provides search function through array lists to find the wanted person or field*/
+                case "2":
+                    System.out.println("Enter the Last Name you want to search ,same as it's entered in system\n     ");
+                    String searchedWord = scanner.nextLine();
+                    Student.searchInStudent(searchedWord);
                     break;
 //                                                  SECOND PAGE
                 case "3":

@@ -3,6 +3,7 @@ package com.company;
 import java.io.*;
 import java.util.ArrayList;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Docent extends Person {
@@ -79,8 +80,10 @@ public class Docent extends Person {
     public static void writeDocent(String firstName, String lastName, String docentNumber, String docentField) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/DocentFile.txt", true));
-//            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
-//             because we call it from main, i don't know what should i do now
+            Random random = new Random();
+            String n= String.valueOf(random.nextInt(300));
+            bw.append(n);
+            bw.newLine();
             bw.append(firstName);
             bw.newLine();
             bw.append(lastName);
@@ -97,5 +100,13 @@ public class Docent extends Person {
 
     public static ArrayList<Docent> getDocents() {
         return docents;
+    }
+
+    public String getDocentNumber() {
+        return docentNumber;
+    }
+
+    public String getDocentField() {
+        return docentField;
     }
 }

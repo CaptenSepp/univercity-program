@@ -3,6 +3,7 @@ package com.company;
 import java.io.*;
 import java.util.ArrayList;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Student extends Person {
@@ -30,11 +31,12 @@ public class Student extends Person {
         }
         students.add(this);
     }
-//todo important : it seems that the two methods to  check inputs are not working, please check them out
+
+    //todo important : it seems that the two methods to  check inputs are not working, please check them out
     private boolean isNumberValid(String number) {
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
-                System.out.println("right input  "+ number);
+                System.out.println("right input  " + number);
                 return true;
             }
         }
@@ -95,6 +97,8 @@ public class Student extends Person {
         String average = scanner.nextLine();
         Student student = new Student(firstName, lastName, studentNumber, studentField, entranceYear, average);
         students.add(student);
+        // todo question : when i print the students array list , there are two times of each student in it, means, the
+        //  students were added one time extra in the list, when i have no idea of that
         writeStudent(firstName, lastName, studentNumber, studentField, entranceYear, average);
     }
 
@@ -105,8 +109,10 @@ public class Student extends Person {
                                     String entranceYear, String average) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/StudentFile.txt", true));
-//            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
-//             because we call it from main, i dont know wwhat should i do now
+            Random random = new Random();
+            String n = String.valueOf(random.nextInt(300));
+            bw.append(n);
+            bw.newLine();
             bw.append(firstName);
             bw.newLine();
             bw.append(lastName);
@@ -124,30 +130,63 @@ public class Student extends Person {
             e.printStackTrace();
         }
     }
-    /**here is given the lastname or student number to define the object and then provide the deleting option
+
+    /**
+     * here is given the lastname or student number to define the object and then provide the deleting option
      * to erase the object from the list and text file
      * >>>Naive Algorithm :
-     *
+     * <p>
      * 1. Create PrintWriter object for output.txt
      * 2. Open BufferedReader for input.txt
      * 3. Run a loop for each line of input.txt
-     *    3.1 flag = false
-     *    3.2 Open BufferedReader for delete.txt
-     *    3.3 Run a loop for each line of delete.txt
-     *       ->  If  line of delete.txt is equal to current line of input.txt
-     *             -> flag = true
-     *             -> break loop
-     *
+     * 3.1 flag = false
+     * 3.2 Open BufferedReader for delete.txt
+     * 3.3 Run a loop for each line of delete.txt
+     * ->  If  line of delete.txt is equal to current line of input.txt
+     * -> flag = true
+     * -> break loop
+     * <p>
      * 4. Check flag, if false
-     *      -> write current line of input.txt to output.txt
-     * 5. Flush PrintWriter stream and close resources.*/
+     * -> write current line of input.txt to output.txt
+     * 5. Flush PrintWriter stream and close resources.
+     */
 //    TODO Question : by deleting i found some methods like flush from class print writer and hashset
 //     that i rather not use them as long as i don't know everything about them , do you have any other idea or
 //     should i attempt to learn them from oracle.com
-    public static void deleteFromStudent(){
+    public static void deleteFromStudent() {
 
     }
+
+    public static void searchInStudent(String searchedWord) {
+//        TODO question : write his part of the search with for each , or at least give me a tip to find that easier
+        for (int i = 0; i < students.size(); i++) {
+            Person checkingPerson = students.get(i);
+            if (checkingPerson.getLastName().equals(searchedWord)) {
+                Student student = students.get(i);
+                System.out.println("this is the student's number of the person you just searched       "
+                        + student.getStudentNumber() + "\n");
+            }
+        }
+        System.out.println("The entered name is not in system\n");
+    }
+
     public static ArrayList<Student> getStudents() {
         return students;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public String getStudentField() {
+        return studentField;
+    }
+
+    public String getEntranceYear() {
+        return entranceYear;
+    }
+
+    public String getAverage() {
+        return average;
     }
 }

@@ -3,6 +3,7 @@ package com.company;
 import java.io.*;
 import java.util.ArrayList;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Field {
@@ -81,8 +82,10 @@ public class Field {
     public static void writeField(String fieldName, String fieldNumber, String fieldPoint, String fieldDate) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/FieldFile.txt", true));
-//            TODO  Question : the Strings like firstName is not static because it can not be unique but method should be static
-//             because we call it from main, i don't know what should i do now
+            Random random = new Random();
+            String n= String.valueOf(random.nextInt(300));
+            bw.append(n);
+            bw.newLine();
             bw.append(fieldName);
             bw.newLine();
             bw.append(fieldNumber);
@@ -99,5 +102,21 @@ public class Field {
 
     public static ArrayList<Field> getFields() {
         return fields;
+    }
+
+    public String getFieldName() {
+        return fieldName;
+    }
+
+    public String getFieldNumber() {
+        return fieldNumber;
+    }
+
+    public String getFieldPoint() {
+        return fieldPoint;
+    }
+
+    public String getFieldDate() {
+        return fieldDate;
     }
 }

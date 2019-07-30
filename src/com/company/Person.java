@@ -1,9 +1,10 @@
 package com.company;
+
 import java.util.ArrayList;
 
 public class Person {
-    public String firstName;
-    public String lastName;
+    private String firstName;
+    private String lastName;
 
     //                           CONSTRUCTOR
     public Person(String firstName, String lastName) {
@@ -32,5 +33,13 @@ public class Person {
             }
         }
         return false;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }
