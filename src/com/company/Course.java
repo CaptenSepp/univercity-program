@@ -6,42 +6,25 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Field {
-    private String fieldName;
-    private String fieldNumber;
-    private String fieldPoint;
-    private String fieldDate;
-    private static ArrayList<Field> fields = new ArrayList<>();
+public class Course {
+    private String courseName;
+    private String courseNumber;
+    private String coursePoint;
+    private String courseDate;
+    private static ArrayList<Course> courses = new ArrayList<>();
 
-    public Field(String fieldName, String fieldNumber, String fieldPoint, String fieldDate) {
-        if (isNameValid(fieldName)) {
-            this.fieldName = fieldName;
+    public Course(String courseName, String courseNumber, String coursePoint, String courseDate) {
+        if (Check.isValid(courseName, 'a', 'z')) {
+            this.courseName = courseName;
         }
-        if (isNameValid(fieldNumber)) {
-            this.fieldNumber = fieldNumber;
+        if (Check.isValid(courseNumber, '0', '9')) {
+            this.courseNumber = courseNumber;
         }
-        if (isNumberValid(fieldPoint)) {
-            this.fieldPoint = fieldPoint;
+        if (Check.isValid(coursePoint, '0', '9')) {
+            this.coursePoint = coursePoint;
         }
     }
 
-    private boolean isNumberValid(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isNameValid(String word) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) >= 'a' && word.charAt(i) <= 'z') {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static void readField() {
 
@@ -56,8 +39,8 @@ public class Field {
                 String fieldNumber = br.readLine();
                 String fieldPoint = br.readLine();
                 String fieldDate = br.readLine();
-                Field field = new Field(fieldName, fieldNumber, fieldPoint, fieldDate);
-                fields.add(field);
+                Course course = new Course(fieldName, fieldNumber, fieldPoint, fieldDate);
+                courses.add(course);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,16 +49,16 @@ public class Field {
 
     public static void addToField() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the field name");
+        System.out.println("Enter the course name");
         String fieldName = scanner.nextLine();
-        System.out.println("Enter the field number");
+        System.out.println("Enter the course number");
         String fieldNumber = scanner.nextLine();
-        System.out.println("Enter the field point");
+        System.out.println("Enter the course point");
         String fieldPoint = scanner.nextLine();
-        System.out.println("Enter the field date");
+        System.out.println("Enter the course date");
         String fieldDate = scanner.nextLine();
-        Field field = new Field(fieldName, fieldNumber, fieldPoint, fieldDate);
-        fields.add(field);
+        Course course = new Course(fieldName, fieldNumber, fieldPoint, fieldDate);
+        courses.add(course);
         writeField(fieldName, fieldNumber, fieldPoint, fieldDate);
     }
 
@@ -100,23 +83,23 @@ public class Field {
         }
     }
 
-    public static ArrayList<Field> getFields() {
-        return fields;
+    public static ArrayList<Course> getCourses() {
+        return courses;
     }
 
-    public String getFieldName() {
-        return fieldName;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public String getFieldNumber() {
-        return fieldNumber;
+    public String getCourseNumber() {
+        return courseNumber;
     }
 
-    public String getFieldPoint() {
-        return fieldPoint;
+    public String getCoursePoint() {
+        return coursePoint;
     }
 
-    public String getFieldDate() {
-        return fieldDate;
+    public String getCourseDate() {
+        return courseDate;
     }
 }
