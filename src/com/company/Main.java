@@ -9,7 +9,8 @@ public class Main {
         Docent.readDocent();
         Employee.readEmployee();
         Field.readField();
-        System.out.println(Student.getStudents());
+        System.out.println(Student.getStudents());//todo question: here is said 'extends Person' what does it can mean?
+        //TODO continue : because extend means erweitern <<GOSTARESH DADAN>>
         System.out.println(Docent.getDocents());
         System.out.println(Employee.getEmployees());
         System.out.println(Field.getFields());

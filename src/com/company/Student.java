@@ -16,7 +16,7 @@ public class Student extends Person {
     public Student(String firstName, String lastName, String studentNumber, String studentField, String entranceYear,
                    String average) {
         super(firstName, lastName);
-        if (isNameValid(studentNumber)) {
+        if (isNumberValid(studentNumber)) {
             this.studentNumber = studentNumber;
         }
         if (isNameValid(studentField)) {
@@ -30,13 +30,16 @@ public class Student extends Person {
         }
         students.add(this);
     }
-
+//todo important : it seems that the two methods to  check inputs are not working, please check them out
     private boolean isNumberValid(String number) {
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
+                System.out.println("right input  "+ number);
                 return true;
             }
         }
+        System.out.println("wrong input");
+
         return false;
     }
 
@@ -46,6 +49,7 @@ public class Student extends Person {
                 return true;
             }
         }
+        System.out.println("wrong input");
         return false;
     }
 
