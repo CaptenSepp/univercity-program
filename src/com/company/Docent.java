@@ -11,35 +11,17 @@ public class Docent extends Person {
     private String docentField;
     private static ArrayList<Docent> docents = new ArrayList<>();
 
-    // TODO Question : if its valid or not, but the boolean method that i had can just check Strings, have you any new idea?
     public Docent(String firstName, String lastName, String docentNumber, String docentField) {
         super(firstName, lastName);
-        if (isNameValid(docentNumber)) {
+        if (Check.isValid(docentNumber, '0', '9')) {
             this.docentNumber = docentNumber;
         }
-        if (isNameValid(docentField)) {
+        if (Check.isValid(docentField, 'a', 'z')) {
             this.docentField = docentField;
         }
-
     }
 
-    private boolean isNumberValid(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    private boolean isNameValid(String word) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) >= 'a' && word.charAt(i) <= 'z') {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static void readDocent() {
         try {
@@ -81,7 +63,7 @@ public class Docent extends Person {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/DocentFile.txt", true));
             Random random = new Random();
-            String n= String.valueOf(random.nextInt(300));
+            String n = String.valueOf(random.nextInt(300));
             bw.append(n);
             bw.newLine();
             bw.append(firstName);

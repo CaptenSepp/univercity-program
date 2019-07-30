@@ -10,23 +10,23 @@ public class Student extends Person {
     private String studentNumber;
     private String studentField;
     private String entranceYear;
-    private String average;// TODO Question : i wanted to make it a float,is it efficient ? and then i wanted to check
+    private String average;
     private static ArrayList<Student> students = new ArrayList<>();
 
 
     public Student(String firstName, String lastName, String studentNumber, String studentField, String entranceYear,
                    String average) {
         super(firstName, lastName);
-        if (isNumberValid(studentNumber)) {
+        if (Check.isValid(studentNumber , '0' , '9')) {
             this.studentNumber = studentNumber;
         }
-        if (isNameValid(studentField)) {
+        if (Check.isValid(studentField, 'a', 'z')) {
             this.studentField = studentField;
         }
-        if (isNumberValid(entranceYear)) {
+        if (Check.isValid(entranceYear, '0', '9')) {
             this.entranceYear = entranceYear;
         }
-        if (isNumberValid(average)) {
+        if (Check.isValid(average, '0', '9', ".")) {
             this.average = average;
         }
         students.add(this);
@@ -45,15 +45,6 @@ public class Student extends Person {
         return false;
     }
 
-    private boolean isNameValid(String word) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) >= 'a' && word.charAt(i) <= 'z') {
-                return true;
-            }
-        }
-        System.out.println("wrong input");
-        return false;
-    }
 
     /**
      * this method read the context from text file

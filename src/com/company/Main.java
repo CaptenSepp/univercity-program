@@ -8,11 +8,11 @@ public class Main {
         Student.readStudent();
         Docent.readDocent();
         Employee.readEmployee();
-        Field.readField();
+        Course.readField();
         System.out.println(Student.getStudents());
         System.out.println(Docent.getDocents());
         System.out.println(Employee.getEmployees());
-        System.out.println(Field.getFields());
+        System.out.println(Course.getCourses());
         Boolean key1 = true;
 
 //                                           FIRST PAGE
@@ -30,7 +30,7 @@ public class Main {
                 /** first case is for adding new persons or fileds in the system as student employee docent or study fields*/
 
                 case "1":
-                    System.out.println("What do you want to add?\n-1-Student\n-2-Docent\n-3-Employee\n-4-Field");
+                    System.out.println("What do you want to add?\n-1-Student\n-2-Docent\n-3-Employee\n-4-Course");
                     String whichAdd = scanner.nextLine();
                     switch (whichAdd) {
                         case "1":
@@ -43,7 +43,7 @@ public class Main {
                             Employee.addToEmployee();
                             break;
                         case "4":
-                            Field.addToField();
+                            Course.addToField();
                             break;
                     }
                     break;
@@ -62,7 +62,7 @@ public class Main {
                 /**this case will delete the persons object and any other information about the person*/
                 case "3":
                     System.out.println("From which group do you want to delete?\n-1-Student\n-2-Docent\n-3-Employee" +
-                            "\n-4-Field");
+                            "\n-4-Course");
                     String deletingWord = scanner.nextLine();
                     switch (deletingWord) {
                         case "1":
