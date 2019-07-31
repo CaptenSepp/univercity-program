@@ -2,13 +2,13 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import java.util.Random;
 import java.util.Scanner;
 
 public class Docent extends Person {
     private String docentNumber;
     private String docentField;
+    private static ArrayList<String> docentNumbers = new ArrayList<>();
     private static ArrayList<Docent> docents = new ArrayList<>();
 
     public Docent(String firstName, String lastName, String docentNumber, String docentField) {
@@ -20,7 +20,6 @@ public class Docent extends Person {
             this.docentField = docentField;
         }
     }
-
 
 
     public static void readDocent() {
@@ -35,9 +34,9 @@ public class Docent extends Person {
                 String lastName = br.readLine();
                 String docentNumber = br.readLine();
                 String docentField = br.readLine();
+                Check.addAllowed(docentNumber, docentNumbers);
                 Docent docent = new Docent(firstName, lastName, docentNumber, docentField);
                 docents.add(docent);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,5 +89,16 @@ public class Docent extends Person {
 
     public String getDocentField() {
         return docentField;
+    }
+
+    /**
+     * these are setters the will be used as delete and replace the new value
+     */
+    public void setDocentNumber(String docentNumber) {
+        this.docentNumber = docentNumber;
+    }
+
+    public void setDocentField(String docentField) {
+        this.docentField = docentField;
     }
 }

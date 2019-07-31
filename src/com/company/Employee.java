@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Employee extends Person {
     private String employeeNumber;
     private String entranceYear;
+    private static ArrayList<String> employeeNumbers = new ArrayList<>();
     private static ArrayList<Employee> employees = new ArrayList<>();
 
     public Employee(String firstName, String lastName, String employeeNumber, String entranceYear) {
@@ -50,6 +51,7 @@ public class Employee extends Person {
                 String lastName = br.readLine();
                 String employeeNumber = br.readLine();
                 String entranceYear = br.readLine();
+                Check.addAllowed(employeeNumber,employeeNumbers);
                 Employee employee = new Employee(firstName, lastName, employeeNumber, entranceYear);
                 employees.add(employee);
 
@@ -69,8 +71,10 @@ public class Employee extends Person {
         String employeeNumber = scanner.nextLine();
         System.out.println("Enter Employee reputation");
         String entranceYear = scanner.nextLine();
+        Check.addAllowed(employeeNumber,employeeNumbers);
         Employee employee = new Employee(firsName, lastName, employeeNumber, entranceYear);
         employees.add(employee);
+        employeeNumbers.add(employeeNumber);
         writeEmployee(firsName, lastName, employeeNumber, entranceYear);
     }
 

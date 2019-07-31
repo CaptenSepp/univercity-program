@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -10,10 +9,11 @@ public class Course {
     private String courseName;
     private String courseNumber;
     private String coursePoint;
-    private String courseDate;
+    private String courseTestDate;
+    private static ArrayList<String> courseNumbers = new ArrayList<>();
     private static ArrayList<Course> courses = new ArrayList<>();
 
-    public Course(String courseName, String courseNumber, String coursePoint, String courseDate) {
+    public Course(String courseName, String courseNumber, String coursePoint, String courseTestDate) {
         if (Check.isValid(courseName, 'a', 'z')) {
             this.courseName = courseName;
         }
@@ -26,20 +26,21 @@ public class Course {
     }
 
 
-    public static void readField() {
+    public static void readCourse() {
 
         try {
-            File fieldFile = new File("resources/FieldFile.txt");
+            File courseFile = new File("resources/CourseFile.txt");
 
-            BufferedReader br = new BufferedReader(new FileReader(fieldFile));
+            BufferedReader br = new BufferedReader(new FileReader(courseFile));
 
             String stop = "";
             while ((stop = br.readLine()) != null) {
-                String fieldName = br.readLine();
-                String fieldNumber = br.readLine();
-                String fieldPoint = br.readLine();
-                String fieldDate = br.readLine();
-                Course course = new Course(fieldName, fieldNumber, fieldPoint, fieldDate);
+                String courseName = br.readLine();
+                String courseNumber = br.readLine();
+                String coursePoint = br.readLine();
+                String courseTestDate = br.readLine();
+                Check.addAllowed(courseNumber,courseNumbers);
+                Course course = new Course(courseName, courseNumber, coursePoint, courseTestDate);
                 courses.add(course);
             }
         } catch (IOException e) {
@@ -47,35 +48,36 @@ public class Course {
         }
     }
 
-    public static void addToField() {
+    public static void addToCourse() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the course name");
-        String fieldName = scanner.nextLine();
+        String courseName = scanner.nextLine();
         System.out.println("Enter the course number");
-        String fieldNumber = scanner.nextLine();
+        String courseNumber = scanner.nextLine();
         System.out.println("Enter the course point");
-        String fieldPoint = scanner.nextLine();
+        String coursePoint = scanner.nextLine();
         System.out.println("Enter the course date");
-        String fieldDate = scanner.nextLine();
-        Course course = new Course(fieldName, fieldNumber, fieldPoint, fieldDate);
+        String courseTestDate = scanner.nextLine();
+        Course course = new Course(courseName, courseNumber, coursePoint, courseTestDate);
         courses.add(course);
-        writeField(fieldName, fieldNumber, fieldPoint, fieldDate);
+        courseNumbers.add(courseNumber);
+        writeCourse(courseName, courseNumber, coursePoint, courseTestDate);
     }
 
-    public static void writeField(String fieldName, String fieldNumber, String fieldPoint, String fieldDate) {
+    public static void writeCourse(String courseName, String courseNumber, String coursePoint, String courseTestDate) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/FieldFile.txt", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter("resources/CourseFile.txt", true));
             Random random = new Random();
             String n= String.valueOf(random.nextInt(300));
             bw.append(n);
             bw.newLine();
-            bw.append(fieldName);
+            bw.append(courseName);
             bw.newLine();
-            bw.append(fieldNumber);
+            bw.append(courseNumber);
             bw.newLine();
-            bw.append(fieldPoint);
+            bw.append(coursePoint);
             bw.newLine();
-            bw.append(fieldDate);
+            bw.append(courseTestDate);
             bw.newLine();
             bw.close();
         } catch (IOException e) {
@@ -99,7 +101,7 @@ public class Course {
         return coursePoint;
     }
 
-    public String getCourseDate() {
-        return courseDate;
+    public String getcourseTestDate() {
+        return courseTestDate;
     }
 }

@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.StringTokenizer;
+import java.util.ArrayList;
 
 public class Check {
     public static boolean isValid(String str, char lowerBound, char upperBound) {
@@ -30,7 +31,17 @@ public class Check {
         if (decimalPart != null && !isValid(decimalPart, '0', '9')) {
             return false;
         }
-
         return true;
+    }
+
+    public static boolean addAllowed(String item, ArrayList itemList) {
+
+        if (itemList.contains(item)) {
+            System.out.println("the "+item+" is duplicated, and in this system is not allowed");
+            return false;
+        } else {
+
+            return true;
+        }
     }
 }

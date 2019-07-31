@@ -8,12 +8,13 @@ public class Main {
         Student.readStudent();
         Docent.readDocent();
         Employee.readEmployee();
-        Course.readField();
-        System.out.println(Student.getStudents());
+        Course.readCourse();
+        System.out.println(Student.getStudents().size());
         System.out.println(Docent.getDocents());
         System.out.println(Employee.getEmployees());
         System.out.println(Course.getCourses());
         Boolean key1 = true;
+
 
 //                                           FIRST PAGE
         /** here is to guide the user to the next page that have options for different functions in the system*/
@@ -21,10 +22,11 @@ public class Main {
         System.out.println("Hello dear User");
         while (key1) {
             System.out.println("What do you want to do?\n-1-adding to the system" +
-                    "\n-2-searching through the system\n-3-delete from the system\n-4-exit the system");
+                    "\n-2-searching through the system\n-3-delete are change from the system\n-4-exit the system");
             Scanner scanner = new Scanner(System.in);
             String First = scanner.nextLine();
             switch (First) {
+
 
 //                                             SECOND PAGE add
                 /** first case is for adding new persons or fileds in the system as student employee docent or study fields*/
@@ -43,10 +45,11 @@ public class Main {
                             Employee.addToEmployee();
                             break;
                         case "4":
-                            Course.addToField();
+                            Course.addToCourse();
                             break;
                     }
                     break;
+
 
 //                                                 SECOND PAGE search
                 /** this part will lead to the method that provides search function through array lists to find the wanted person or field*/
@@ -58,28 +61,56 @@ public class Main {
 //                    bu it can be extended and results more information about the person who is searched
                     break;
 
-//                                                  SECOND PAGE
+
+//                                                  SECOND PAGE delete or change
                 /**this case will delete the persons object and any other information about the person*/
+                //todo this part should be change to (do-while) loop
                 case "3":
-                    System.out.println("From which group do you want to delete?\n-1-Student\n-2-Docent\n-3-Employee" +
-                            "\n-4-Course");
-                    String deletingWord = scanner.nextLine();
-                    switch (deletingWord) {
-                        case "1":
-                            Student.deleteFromStudent(deletingWord);
-                            break;
-                        case "2":
-
-                            break;
-                        case "3":
-
-                            break;
-                        case "4":
-
-                            break;
-                        default:
-                            break;
+                    boolean whileAns = true;
+                    while (whileAns) {
+                        System.out.println("do you want to -1- delete or -2- change?");
+                        String deleteOrChange = scanner.nextLine();
+                        if (deleteOrChange.equals("1")) {
+                            System.out.println("From which group do you want to delete?\n-1-Student\n-2-Docent\n-3-Employee" +
+                                    "\n-4-Course");
+                            String whichDel = scanner.nextLine();
+                            switch (whichDel) {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    break;
+                                case "4":
+                                    break;
+                                default:
+                                    System.out.println("wrong input");
+                                    break;
+                            }
+                            whileAns = false;
+                        } else if (deleteOrChange.equals("2")) {
+                            System.out.println("In which group do you want to change?\n-1-Student\n-2-Docent\n-3-Employee" +
+                                    "\n-4-Course");
+                            String whichCha = scanner.nextLine();
+                            switch (whichCha) {
+                                case "1":
+                                    break;
+                                case "2":
+                                    break;
+                                case "3":
+                                    break;
+                                case "4":
+                                    break;
+                                default:
+                                    System.out.println("wrong input");
+                                    break;
+                            }
+                            whileAns = false;
+                        } else {
+                            System.out.println("your input is wrong");
+                        }
                     }
+
 
 //                                                  SECOND PAGE
                     /** the last case is just in case that the person write a wrong input and willing to exit
