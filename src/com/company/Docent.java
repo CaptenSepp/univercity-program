@@ -10,6 +10,7 @@ public class Docent extends Person {
     private String docentField;
     private static ArrayList<String> docentNumbers = new ArrayList<>();
     private static ArrayList<Docent> docents = new ArrayList<>();
+    private ArrayList<Course> docentCourses = new ArrayList<>();
 
     public Docent(String firstName, String lastName, String docentNumber, String docentField) {
         super(firstName, lastName);
@@ -20,7 +21,6 @@ public class Docent extends Person {
             this.docentField = docentField;
         }
     }
-
 
     public static void readDocent() {
         try {
@@ -43,6 +43,9 @@ public class Docent extends Person {
         }
     }
 
+    /**
+     * get from user,check the duplication of number,add to array list, write to text file
+     */
     public static void addToDocent() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Docent First name");
@@ -79,6 +82,18 @@ public class Docent extends Person {
         }
     }
 
+    public static String searchInDocent(String searchedWord) {
+        for (Docent docent : docents) {
+            if (docent.lastName.equals(searchedWord)) {
+                System.out.println("Docent: " + docent.firstName + "   " + docent.lastName + "  " + docent.docentField + "  "
+                        + docent.docentNumber);
+                return null;
+            }
+        }
+        System.out.println("The entered name is not in Docents");
+        return null;
+    }
+
     public static ArrayList<Docent> getDocents() {
         return docents;
     }
@@ -95,10 +110,17 @@ public class Docent extends Person {
      * these are setters the will be used as delete and replace the new value
      */
     public void setDocentNumber(String docentNumber) {
+
         this.docentNumber = docentNumber;
     }
 
     public void setDocentField(String docentField) {
         this.docentField = docentField;
+    }
+
+    public void setAddDocentCourseLimit(Course newCourse) {
+        if (docentCourses.size()<3 && docentCourses.size()>0){
+            docentCourses.add(newCourse);
+        }
     }
 }

@@ -20,7 +20,9 @@ public class Course {
         if (Check.isValid(courseNumber, '0', '9')) {
             this.courseNumber = courseNumber;
         }
-        if (Check.isValid(coursePoint, '0', '9')) {
+        /**check if the point is also allowed in system*/
+        if (Check.isValid(coursePoint, '0', '9') && Integer.valueOf(coursePoint) < 5
+                && Integer.valueOf(coursePoint) > 1) {
             this.coursePoint = coursePoint;
         }
     }
@@ -39,7 +41,7 @@ public class Course {
                 String courseNumber = br.readLine();
                 String coursePoint = br.readLine();
                 String courseTestDate = br.readLine();
-                Check.addAllowed(courseNumber,courseNumbers);
+                Check.addAllowed(courseNumber, courseNumbers);
                 Course course = new Course(courseName, courseNumber, coursePoint, courseTestDate);
                 courses.add(course);
             }
@@ -48,6 +50,9 @@ public class Course {
         }
     }
 
+    /**
+     * get from user,check the duplication of number,add to array list, write to text file
+     */
     public static void addToCourse() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the course name");
@@ -68,7 +73,7 @@ public class Course {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/CourseFile.txt", true));
             Random random = new Random();
-            String n= String.valueOf(random.nextInt(300));
+            String n = String.valueOf(random.nextInt(300));
             bw.append(n);
             bw.newLine();
             bw.append(courseName);
@@ -85,6 +90,19 @@ public class Course {
         }
     }
 
+    public static String searchInCourse(String searchedWord) {
+        for (Course course : courses) {
+            if (course.courseName.equals(searchedWord)) {
+                System.out.println("Course: " + course.courseName + "   " + course.courseNumber + "  " + course.coursePoint + "  "
+                        + course.courseTestDate);
+                return null;
+            }
+        }
+        System.out.println("The entered name is not in Courses");
+        return null;
+    }
+
+    // getters
     public static ArrayList<Course> getCourses() {
         return courses;
     }

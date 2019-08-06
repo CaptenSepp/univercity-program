@@ -15,7 +15,7 @@ public class Check {
         return true;
     }
 
-    public static boolean isValid(String str, char lowerBoud, char upperBound, String delimiter) {
+    public static boolean isValid(String str, char lowerBound, char upperBound, String delimiter) {
         StringTokenizer token = new StringTokenizer(str, delimiter, false);
         if (token.countTokens() > 2) {
             return false;
@@ -34,6 +34,7 @@ public class Check {
         return true;
     }
 
+    /**this method checks if the unique part of each object is not duplicated */
     public static boolean addAllowed(String item, ArrayList itemList) {
 
         if (itemList.contains(item)) {

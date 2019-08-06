@@ -13,54 +13,39 @@ public class Employee extends Person {
 
     public Employee(String firstName, String lastName, String employeeNumber, String entranceYear) {
         super(firstName, lastName);
-        if (isNameValid(employeeNumber)) {
+        if (Check.isValid(employeeNumber, '0', '9')) {
             this.employeeNumber = employeeNumber;
         }
-        if (isNumberValid(entranceYear)) {
+        if (Check.isValid(entranceYear, '0', '9')) {
             this.entranceYear = entranceYear;
         }
     }
 
-    private boolean isNumberValid(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            if (number.charAt(i) >= '0' && number.charAt(i) <= '9') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isNameValid(String word) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) >= 'a' && word.charAt(i) <= 'z') {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    /**
+     * read from file and add to array list
+     */
     public static void readEmployee() {
         try {
             File EmployeeFile = new File("resources/EmployeeFile.txt");
-
             BufferedReader br = new BufferedReader(new FileReader(EmployeeFile));
-
             String stop = "";
             while ((stop = br.readLine()) != null) {
                 String firstName = br.readLine();
                 String lastName = br.readLine();
                 String employeeNumber = br.readLine();
                 String entranceYear = br.readLine();
-                Check.addAllowed(employeeNumber,employeeNumbers);
+                Check.addAllowed(employeeNumber, employeeNumbers);
                 Employee employee = new Employee(firstName, lastName, employeeNumber, entranceYear);
                 employees.add(employee);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * get from user,check the duplication of number,add to array list, write to text file
+     */
     public static void addToEmployee() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Employee First name");
@@ -71,19 +56,18 @@ public class Employee extends Person {
         String employeeNumber = scanner.nextLine();
         System.out.println("Enter Employee reputation");
         String entranceYear = scanner.nextLine();
-        Check.addAllowed(employeeNumber,employeeNumbers);
+        Check.addAllowed(employeeNumber, employeeNumbers);
         Employee employee = new Employee(firsName, lastName, employeeNumber, entranceYear);
         employees.add(employee);
         employeeNumbers.add(employeeNumber);
         writeEmployee(firsName, lastName, employeeNumber, entranceYear);
     }
 
-
     public static void writeEmployee(String firstName, String lastName, String employeeNumber, String entranceYear) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/EmployeeFile.txt", true));
             Random random = new Random();
-            String n= String.valueOf(random.nextInt(300));
+            String n = String.valueOf(random.nextInt(300));
             bw.append(n);
             bw.newLine();
             bw.append(firstName);
@@ -100,10 +84,24 @@ public class Employee extends Person {
         }
     }
 
+    // getters
     public static ArrayList<Employee> getEmployees() {
         return employees;
     }
 
+    //the other patern of doing that is to do without return anything
+    public static void searchInEmployee(String searchedWord) {
+        for (Employee employee : employees) {
+            if (employee.lastName.equals(searchedWord)) {
+                System.out.println("Employee: " + employee.firstName + "   " + employee.lastName + "   " + employee.employeeNumber + "  "
+                        + employee.entranceYear);
+                return;
+            }
+        }
+        System.out.println("The entered name is not in Employees");
+    }
+//todo we have  a system for search that gives al information about person in the method ,so we don't actually need
+// getter for each specific field
     public String getEmployeeNumber() {
         return employeeNumber;
     }
@@ -111,5 +109,6 @@ public class Employee extends Person {
     public String getEntranceYear() {
         return entranceYear;
     }
+
 }
 
