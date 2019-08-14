@@ -90,15 +90,16 @@ public class Employee extends Person {
     }
 
     //the other patern of doing that is to do without return anything
-    public static void searchInEmployee(String searchedWord) {
+    public static Employee searchInEmployee(String searchedWord) {
         for (Employee employee : employees) {
             if (employee.lastName.equals(searchedWord)) {
                 System.out.println("Employee: " + employee.firstName + "   " + employee.lastName + "   " + employee.employeeNumber + "  "
                         + employee.entranceYear);
-                return;
+                return employee;
             }
         }
         System.out.println("The entered name is not in Employees");
+        return null;
     }
 //todo we have  a system for search that gives al information about person in the method ,so we don't actually need
 // getter for each specific field

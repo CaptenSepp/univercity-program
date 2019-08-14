@@ -123,13 +123,13 @@ public class Student extends Person {
         }
     }
 
-    public static String searchInStudent(String searchedWord) {
+    public static Student searchInStudent(String searchedWord) {
         for (Student student : students) {
             if (student.lastName.equals(searchedWord)) {
                 System.out.println("Student: " + student.firstName + "   " + student.lastName + "   " + student.studentNumber + "  "
                         + student.entranceYear + "  " + student.average + "   " + student.getStudentNotes());
                 //todo : the output of student notes when the system find the person is wrong, and gives the address of the list
-                return null;
+                return student;
             }
         }
         System.out.println("The entered name is not in Students");
@@ -162,7 +162,7 @@ public class Student extends Person {
     /**
      * setter and we use them as delete part
      */
-    public void setStudentNumber(String studentNumber) {
+    public void setStudentNumber(String studentNumber) {//todo question : when we change the detail through setter then we have to write it again in the text file ,should i write a class for writing things in the text file to make it once?
         this.studentNumber = studentNumber;
     }
 

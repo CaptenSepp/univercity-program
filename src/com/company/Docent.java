@@ -82,12 +82,12 @@ public class Docent extends Person {
         }
     }
 
-    public static String searchInDocent(String searchedWord) {
+    public static Docent searchInDocent(String searchedWord) {
         for (Docent docent : docents) {
             if (docent.lastName.equals(searchedWord)) {
                 System.out.println("Docent: " + docent.firstName + "   " + docent.lastName + "  " + docent.docentField + "  "
                         + docent.docentNumber);
-                return null;
+                return docent;
             }
         }
         System.out.println("The entered name is not in Docents");
@@ -119,7 +119,7 @@ public class Docent extends Person {
     }
 
     public void setAddDocentCourseLimit(Course newCourse) {
-        if (docentCourses.size()<3 && docentCourses.size()>0){
+        if (docentCourses.size() < 3 && docentCourses.size() > 0) {
             docentCourses.add(newCourse);
         }
     }

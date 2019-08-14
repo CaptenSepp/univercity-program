@@ -90,12 +90,12 @@ public class Course {
         }
     }
 
-    public static String searchInCourse(String searchedWord) {
+    public static Course searchInCourse(String searchedWord) {
         for (Course course : courses) {
             if (course.courseName.equals(searchedWord)) {
                 System.out.println("Course: " + course.courseName + "   " + course.courseNumber + "  " + course.coursePoint + "  "
                         + course.courseTestDate);
-                return null;
+                return course;
             }
         }
         System.out.println("The entered name is not in Courses");
