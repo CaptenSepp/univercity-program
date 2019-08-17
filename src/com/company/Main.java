@@ -61,7 +61,7 @@ public class Main {
                 case "3":
                     boolean whileAns = true;
                     while (whileAns) {
-                        System.out.println("\ndo you want to -1- delete or -2- change?");
+                        System.out.println("\ndo you want to -1- delete or -2- change/add?");
                         String deleteOrChange = scanner.nextLine();
                         //                                                                      DELETE
                         if (deleteOrChange.equals("1")) {
@@ -93,7 +93,7 @@ public class Main {
                                 case "1":
                                     Student student = Student.searchInStudent(whoChan);
                                     System.out.println("what do you want to change?\n-1-Student Number-2- Student Field" +
-                                            "-3-Student entrance Year -4- Student Average");
+                                            "-3-Student entrance Year -4- Student Average -5- add Courses");
                                     String whatChanS = scanner.nextLine();
                                     switch (whatChanS) {
                                         case "1":
@@ -116,6 +116,10 @@ public class Main {
                                             String newAve = scanner.nextLine();
                                             student.setStudentNumber(newAve);
                                             break;
+                                        case "5":
+                                            System.out.println("Write the course name you want to add");
+                                            String newCourse = scanner.nextLine();
+                                            student.addStudentCourses(Course.searchInCourse(newCourse));
                                         default:
                                             System.out.println("you put the wrong input");
                                             break;

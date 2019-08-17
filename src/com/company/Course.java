@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class Course {
     private String courseName;
     private String courseNumber;
-    private String coursePoint;
+    private int coursePoint = 0;
     private String courseTestDate;
     private static ArrayList<String> courseNumbers = new ArrayList<>();
     private static ArrayList<Course> courses = new ArrayList<>();
 
-    public Course(String courseName, String courseNumber, String coursePoint, String courseTestDate) {
+    public Course(String courseName, String courseNumber, int coursePoint, String courseTestDate) {
         if (Check.isValid(courseName, 'a', 'z')) {
             this.courseName = courseName;
         }
@@ -21,8 +21,7 @@ public class Course {
             this.courseNumber = courseNumber;
         }
         /**check if the point is also allowed in system*/
-        if (Check.isValid(coursePoint, '0', '9') && Integer.valueOf(coursePoint) < 5
-                && Integer.valueOf(coursePoint) > 1) {
+        if (coursePoint < 5 && coursePoint > 1) {
             this.coursePoint = coursePoint;
         }
     }
@@ -39,7 +38,7 @@ public class Course {
             while ((stop = br.readLine()) != null) {
                 String courseName = br.readLine();
                 String courseNumber = br.readLine();
-                String coursePoint = br.readLine();
+                int coursePoint =Integer.valueOf(br.readLine());
                 String courseTestDate = br.readLine();
                 Check.addAllowed(courseNumber, courseNumbers);
                 Course course = new Course(courseName, courseNumber, coursePoint, courseTestDate);
@@ -60,7 +59,7 @@ public class Course {
         System.out.println("Enter the course number");
         String courseNumber = scanner.nextLine();
         System.out.println("Enter the course point");
-        String coursePoint = scanner.nextLine();
+        int coursePoint = Integer.valueOf(scanner.nextLine());
         System.out.println("Enter the course date");
         String courseTestDate = scanner.nextLine();
         Course course = new Course(courseName, courseNumber, coursePoint, courseTestDate);
@@ -69,7 +68,7 @@ public class Course {
         writeCourse(courseName, courseNumber, coursePoint, courseTestDate);
     }
 
-    public static void writeCourse(String courseName, String courseNumber, String coursePoint, String courseTestDate) {
+    public static void writeCourse(String courseName, String courseNumber, int coursePoint, String courseTestDate) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("resources/CourseFile.txt", true));
             Random random = new Random();
@@ -80,7 +79,7 @@ public class Course {
             bw.newLine();
             bw.append(courseNumber);
             bw.newLine();
-            bw.append(coursePoint);
+            bw.append(String.valueOf(coursePoint));
             bw.newLine();
             bw.append(courseTestDate);
             bw.newLine();
@@ -115,8 +114,8 @@ public class Course {
         return courseNumber;
     }
 
-    public String getCoursePoint() {
-        return coursePoint;
+    public int getCoursePoint() {
+        return Integer.valueOf(coursePoint);
     }
 
     public String getcourseTestDate() {

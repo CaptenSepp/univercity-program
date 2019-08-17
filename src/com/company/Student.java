@@ -14,14 +14,14 @@ public class Student extends Person {
     private int studentCorrections = 0;
     private double physic;
     private double mathe;
-    private double chemie;
+    private double chemistry;
     private double english;
     private double deutsch;
     // todo question : now these array lists bellow are stored in the objects location??? they are statics i mean
     private static ArrayList<Student> students = new ArrayList<>();
     private static ArrayList<String> studentNumbers = new ArrayList<>();
-    private ArrayList<Course> studentCourses = new ArrayList<>();
-    private Double[] studentNotes = new Double[5];
+    private static ArrayList<Course> studentCourses = new ArrayList<>();
+    private static Double[] studentNotes = new Double[5];
 
     public Student(String firstName, String lastName, String studentNumber, String studentField, String entranceYear,
                    String average) {
@@ -123,11 +123,20 @@ public class Student extends Person {
         }
     }
 
+    /**
+     * search and print the information
+     */
     public static Student searchInStudent(String searchedWord) {
         for (Student student : students) {
             if (student.lastName.equals(searchedWord)) {
                 System.out.println("Student: " + student.firstName + "   " + student.lastName + "   " + student.studentNumber + "  "
-                        + student.entranceYear + "  " + student.average + "   " + student.getStudentNotes());
+                        + student.entranceYear + "  " + student.average);
+                for (int i = 0; i < 5; i++) {
+                    System.out.println(studentNotes[i]);
+                }
+                for (int i = 0; i < studentCourses.size(); i++) {
+                    System.out.println(studentCourses.get(i));
+                }
                 //todo : the output of student notes when the system find the person is wrong, and gives the address of the list
                 return student;
             }
@@ -181,13 +190,15 @@ public class Student extends Person {
     /**
      * add new Course in students list
      */
-    public void setAddStudentCoursesLimit(Course newCourse) {
+    public void addStudentCourses(Course newCourse) {
         // todo : these are corrections time out for student , just two times
-//        if (studentCorrections<2) {
-//            studentCorrections += 1;
-        if (totalStudentCoursePoint + Integer.valueOf(newCourse.getCoursePoint()) < 21) {
-            studentCourses.add(newCourse);
-            totalStudentCoursePoint += Integer.valueOf(newCourse.getCoursePoint());
+        if (studentCorrections < 2) {
+            //todo question : this line below have some kind of problem, it gets an null point exception
+            if ((totalStudentCoursePoint + newCourse.getCoursePoint()) < 21) {
+                studentCourses.add(newCourse);
+                totalStudentCoursePoint += Integer.valueOf(newCourse.getCoursePoint());
+                studentCorrections += 1;
+            }
         }
     }
 
@@ -206,7 +217,7 @@ public class Student extends Person {
 
     private static void readStudentNote(Student student) {
         try {
-            File studentNote = new File("resources/HashSepp.txt");
+            File studentNote = new File("resources/StudentsNotes.txt");
             BufferedReader br = new BufferedReader(new FileReader(studentNote));
             String stop;
             while ((stop = br.readLine()) != null) {
@@ -215,13 +226,13 @@ public class Student extends Person {
                 if (stop.equals(student.lastName + student.firstName)) {
                     double physic = Double.valueOf(br.readLine());
                     double mathe = Double.valueOf(br.readLine());
-                    double chemie = Double.valueOf(br.readLine());
+                    double chemistry = Double.valueOf(br.readLine());
                     double english = Double.valueOf(br.readLine());
                     double deutsch = Double.valueOf(br.readLine());
-                    //todo question : how can i write that with a for loop ?
+                    //todo question : how can i write the code below with a for loop ?
                     student.studentNotes[0] = physic;
                     student.studentNotes[1] = mathe;
-                    student.studentNotes[2] = chemie;
+                    student.studentNotes[2] = chemistry;
                     student.studentNotes[3] = english;
                     student.studentNotes[4] = deutsch;
                 }
